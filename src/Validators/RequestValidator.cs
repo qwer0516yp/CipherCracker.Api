@@ -19,4 +19,18 @@ public static class RequestValidator
         Guard.IsNotNullOrWhiteSpace(request.IvBase64);
         Guard.IsNotNullOrWhiteSpace(request.EncryptedMessageBase64);
     }
+
+    private static readonly string[] _validStringFormats = { "hex", "base64", "ascii", "utf-8", "utf-32" };
+    public static void Validate(StringConvertRequest request)
+    {
+        Guard.IsNotNull(request);
+        Guard.IsNotNullOrWhiteSpace(request.Text);
+        Guard.IsNotNullOrWhiteSpace(request.From);
+        Guard.IsNotNullOrWhiteSpace(request.To);
+
+        if(!_validStringFormats.Contains(request.From))
+            throw new ArgumentException("Invalid 'from' string format");
+        if(!_validStringFormats.Contains(request.To))
+            throw new ArgumentException("Invalid 'to' string format");
+    }
 }

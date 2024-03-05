@@ -1,6 +1,4 @@
-﻿using Newtonsoft.Json;
-
-namespace CipherCracker.Api.Models;
+﻿namespace CipherCracker.Api.Models;
 
 public class AesGcmDecryptResponse : ResponseBase
 {

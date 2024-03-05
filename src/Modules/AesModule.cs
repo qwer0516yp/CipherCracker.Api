@@ -17,12 +17,12 @@ public static class AesModule
         {
             var response = new AesGcmService().ProcessEncryptionResquest(request);
             return Results.Json(response, jsonSerializerOptions);
-        });
+        }).WithTags("AES");
 
         app.MapPost("/aes/gcm/decrypt", (AesGcmDecryptRequest request) =>
         {
             var response = new AesGcmService().ProcessDecryptionResquest(request);
             return Results.Json(response, jsonSerializerOptions);
-        });
+        }).WithTags("AES");
     }
 }

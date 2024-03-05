@@ -19,7 +19,10 @@ public static class WeatherSampleModule
             return forecast;
         })
         .WithName("GetWeatherForecast")
+        .WithTags("HealthCheck")
         .WithOpenApi();
+
+        app.MapGet("/ping", () => DateTimeOffset.Now).WithTags("HealthCheck").WithOpenApi();
     }
 }
 
