@@ -1,6 +1,6 @@
 ﻿using CipherCracker.Api.Models;
-using System.Text.Json.Serialization;
 using System.Text.Json;
+using System.Text.Json.Serialization;
 
 namespace CipherCracker.Api;
 
@@ -17,6 +17,11 @@ public static class UtilityModule
         {
             var response = new StringConvertService().ProcessRequest(request);
             return Results.Json(response, jsonSerializerOptions);
-        }).WithTags("Utilities");
+        }).WithTags("Utilities")
+        .WithOpenApi(op => new(op) 
+        {
+            Summary = "Convert String from one format/encoding to another",
+            Description = "Supported formats: Base64, Hex, UTF-8, UTF-32, ASCII"
+        });
     }
 }
