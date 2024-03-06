@@ -1,4 +1,7 @@
 using CipherCracker.Api;
+using CipherCracker.Api.Examples;
+using Swashbuckle.AspNetCore.Filters;
+using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -7,8 +10,11 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(c =>
 {
+    c.ExampleFilters();
     c.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo { Title = "CipherCracker API", Version = "v1" });
 });
+
+builder.Services.AddSwaggerExamplesFromAssemblies(Assembly.GetEntryAssembly()); // Add Swagger examples
 
 var app = builder.Build();
 
